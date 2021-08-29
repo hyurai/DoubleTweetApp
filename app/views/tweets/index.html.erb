@@ -8,10 +8,30 @@
 　　 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
      <a href = "/users/<%= current_user.id%>">Mypage</a>
    <% else %>
-     <a href = "/admin/sign_up">Admin:Sign Up</a>
-     <a href = "/admin/sign_in">Admin:Login</a>
+     <a href = "/admins/sign_up">Admin:Sign Up</a>
+     <a href = "/admins/sign_in">Admin:Login</a>
      <a href = "/users/sign_up">User:Sign Up</a>
-     <a href = "/userss/sign_in">User: Login</a>
+     <a href = "/users/sign_in">User: Login</a>
    <% end %>
  </div>
+</div>
+<div>
+ <% if admin_signed_in? %>
+   <form action = "/tweets" method = "post">
+     <input type = "hidden" name = "admin_id" value = "<%= current_admin.id%>"></input>
+     <input type = "text" name = "text"></input>
+     <input type = "submit" value = "管理者投稿"></input>
+   </form>
+ <% elsif user_signed_in?%>
+   <form action = "/tweets" method = "post">
+    <input type = "hidden" name = "user_id" value = "<%= current_user.id%>"></input>
+    <input type = "text" name = "text"></input>
+    <input type = "submit" value = "ユーザー投稿"></input>
+   </form>
+ <% end %>
+ 
+ 
+ <% @tweets.each do |tweet|%>
+   <p><%= tweet.text%></p>
+ <% end %>
 </div>
