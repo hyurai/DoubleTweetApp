@@ -1,0 +1,17 @@
+<div style = "display:flex;width:100%;">
+ <h1 style = "margin:0px;width:60%;">DoubleTweetApp</h1>
+ <div style = "margin-top: auto;margin-bottom: auto;width:40%;">
+   <% if admin_signed_in? %>
+     <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete %>
+     <a href = "/admins/<%= current_admin.id%>">管理者:Mypage</a>
+　 <% elsif user_signed_in?%>
+　　 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+     <a href = "/users/<%= current_user.id%>">Mypage</a>
+   <% else %>
+     <a href = "/admin/sign_up">Admin:Sign Up</a>
+     <a href = "/admin/sign_in">Admin:Login</a>
+     <a href = "/users/sign_up">User:Sign Up</a>
+     <a href = "/userss/sign_in">User: Login</a>
+   <% end %>
+ </div>
+</div>
