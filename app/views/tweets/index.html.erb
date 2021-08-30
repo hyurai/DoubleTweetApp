@@ -30,8 +30,20 @@
    </form>
  <% end %>
  
- 
+ <div style = "width:100%;">
  <% @tweets.each do |tweet|%>
-   <p><%= tweet.text%></p>
+   <% if tweet.admin_id == nil%>
+   <div style = "width:50%;">
+    <p><%= tweet.user.name%></p>
+    <p><%= tweet.text%></p>
+   </div>
+   <% else %>
+   <div class = "width:50%;">
+    <p><%= tweet.admin.name%></p>
+    <p><%= tweet.text%></p>
+   </div>
+   <% end %>
+   
  <% end %>
+ </div>
 </div>

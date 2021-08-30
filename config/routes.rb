@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root to: 'tweets#index'
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tweets
-  root to: 'tweets#index'
+  resources :users,only:[:show]
+  resources :admins,only:[:show]
+
+ 
 end
